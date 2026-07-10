@@ -4,6 +4,7 @@ import {
     CheckIcon,
     CommentIcon,
     MortarBoardIcon,
+    Icon,
 } from '@primer/octicons-react'
 
 import MonaLoadingImage from '../images/mona-loading.gif'
@@ -11,12 +12,7 @@ import MonaLoadingImage from '../images/mona-loading.gif'
 import styles from './index.module.css'
 
 function Playground() {
-    /*
-    WELCOME TO MONA's 😽🐙 PLAYGROUND
-    Delete everything in here or play with the existing Mona playground code to get familiar with Primer React.
-    Documentation: https://primer.style/product/getting-started/react/
-    Documentation vars: https://primer.style/primitives/
-  */
+
 
     return (
         <div className={styles.page}>
@@ -29,17 +25,13 @@ function Playground() {
                         icon={CheckIcon}
                         iconColor="var(--fgColor-success)"
                     >
-                        Mona&apos;s playground successfully initialised...
+                        Todo list is in development
                     </CodeLine>
                     <CodeLine
                         icon={CommentIcon}
                         iconColor="var(--fgColor-accent)"
                     >
-                        Visit{' '}
-                        <span className={styles.fileName}>
-                            src/pages/index.jsx
-                        </span>{' '}
-                        and start building your own layouts using Primer.
+                        Check back again later
                     </CodeLine>
                     <li className={styles.loader}>
                         <img
@@ -56,7 +48,13 @@ function Playground() {
     )
 }
 
-function CodeLine({ icon, iconColor, children }) {
+interface CodeLineProps {
+    icon: Icon,
+    iconColor: string,
+    children: React.ReactNode,
+}
+
+function CodeLine({ icon, iconColor, children }: CodeLineProps) {
     const Icon = icon
     return (
         <li className={styles.codeline}>

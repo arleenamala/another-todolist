@@ -1,17 +1,23 @@
 import { useTheme, ActionMenu, ActionList } from '@primer/react'
-import { SunIcon, MoonIcon } from '@primer/octicons-react'
+import { SunIcon, MoonIcon, Icon } from '@primer/octicons-react'
 
 import styles from './ColorModeSwitcher.module.css'
+
+interface Scheme {
+    name: string,
+    value: string,
+    icon: Icon,
+}
 
 function ColorModeSwitcher() {
     const { setDayScheme, setNightScheme, colorScheme } = useTheme()
 
-    const setScheme = (schemeValue) => {
+    const setScheme = (schemeValue:string) => {
         setDayScheme(schemeValue)
         setNightScheme(schemeValue)
     }
 
-    const schemes = [
+    const schemes:Array<Scheme> = [
         {
             name: 'Light',
             value: 'light',
@@ -44,7 +50,7 @@ function ColorModeSwitcher() {
         },
     ]
 
-    const current = schemes.find((scheme) => scheme.value === colorScheme)
+    const current:Scheme = schemes.find((scheme) => scheme.value === colorScheme) || schemes[0];
 
     return (
         <div className={styles.switcher}>
@@ -53,13 +59,12 @@ function ColorModeSwitcher() {
                     <current.icon />
                     <div className={styles.btnText}> {current.name}</div>
                 </ActionMenu.Button>
-                <ActionMenu.Overlay align="right">
+                <ActionMenu.Overlay align="end">
                     <ActionList>
                         <ActionList.Group selectionVariant="single">
                             {schemes.map((scheme) => (
                                 <ActionList.Item
                                     key={scheme.value}
-                                    href="#"
                                     selected={scheme.value === colorScheme}
                                     onSelect={() => setScheme(scheme.value)}
                                 >
